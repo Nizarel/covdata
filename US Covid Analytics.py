@@ -1,4 +1,13 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC ###The COVID-19 dataset consists of three CSV files:
+# MAGIC
+# MAGIC 1. **us_covid19_daily.csv:** This file contains daily data on COVID-19 cases in the USA.
+# MAGIC 2. **us_states_covid19_daily.csv:** This file contains daily data on COVID-19 cases in each state in the USA.
+# MAGIC 3. **us_counties_covid19_daily.csv:** This file contains daily data on COVID-19 cases in each county in the USA.
+
+# COMMAND ----------
+
 #Mounting Bronze Containers to Databricks
 # https://towardsdev.com/building-an-end-to-end-data-pipeline-with-delta-lake-and-databricks-337202a110a8
 
@@ -39,6 +48,16 @@ df_us_counties_daily_bronze = spark.read.format('csv').options(header='true', in
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC
+# MAGIC The filter() function in PySpark is used to filter rows in a DataFrame based on a given condition. The condition can be an expression or SQL statement.
+# MAGIC
+# MAGIC In this line of code, df_us_daily_silver is a new DataFrame that includes only the rows from df_us_daily_bronze where the date is not null1. This means it excludes any rows where the date is null. The filter() function is very useful for data cleaning and preprocessing.
+# MAGIC
+# MAGIC
+
+# COMMAND ----------
+
 # Clean and transform the data
 df_us_daily_silver = df_us_daily_bronze.filter(df_us_daily_bronze.date.isNotNull())
 df_us_states_daily_silver = df_us_states_daily_bronze.filter(df_us_states_daily_bronze.date.isNotNull())
@@ -76,6 +95,14 @@ USING DELTA
 LOCATION '/mnt/covlake/silver/us_counties_covid19_daily'
 """)
 
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC
+# MAGIC USE covid19_db;
+# MAGIC
+# MAGIC select * from us_states_covid19_daily
 
 # COMMAND ----------
 
