@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "fjxfactory"
+		},
+		"ADLS2_accountKey": {
+			"value": ""
+		},
+		"SqlDb_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tjxserv.database.windows.net;Initial Catalog=tjxsalesdb"
+		},
+		"ADLS2_properties_typeProperties_url": {
+			"value": "https://rmcapi.dfs.core.windows.net/"
+		}
+	}
+}
