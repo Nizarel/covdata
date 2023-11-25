@@ -1,0 +1,9 @@
+{
+	"name": "fjxfactory",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "5dfe3645-b981-4f4a-9396-e1e914d3c762",
+		"tenantId": "f41907ba-5052-4208-b43b-fd1518a87d3e"
+	}
+}
