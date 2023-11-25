@@ -1,0 +1,48 @@
+{
+	"name": "DataDestination",
+	"properties": {
+		"description": "Connection to your data destination store.",
+		"linkedServiceName": {
+			"referenceName": "ADLS2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Data_Destination_Container": {
+				"type": "String"
+			},
+			"Data_Destination_Directory": {
+				"type": "String"
+			},
+			"Data_Destination_Filename": {
+				"type": "string"
+			},
+			"Data_Destination_Timestamp": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat(dataset().Data_Destination_Filename,'_',dataset().Data_Destination_Timestamp,'.csv')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@{dataset().Data_Destination_Directory}",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@{dataset().Data_Destination_Container}",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
